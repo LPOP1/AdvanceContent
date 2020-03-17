@@ -70,7 +70,7 @@ class DataProvider
 		$name = $player->getName ();
 		
 		if (($class = AdvanceContent::$content [$content]) instanceof Content) {
-			if ($class->getClearCount ($name, (int) date ("D")) < $class->getDayLimit ()) {
+			if ($class->getClearCount ($name, date ("m:d")) < $class->getDayLimit ()) {
 				foreach ($class->getRewards ($content) as $reward => $bool) {
 					$type = explode (":", $reward) [0];
 					if ($type === "item") {
@@ -80,7 +80,7 @@ class DataProvider
 				}
 				$nowTime = time ();
 				$record = $nowTime - $time;
-				$class->clearData ($name, (int) date ("D"), $record);
+				$class->clearData ($name, date ("m:d"), $record);
 				foreach ($this->plugin->getServer ()->getOnlinePlayers () as $players) {
 					AdvanceContent::message ($players, "§a{$content}§r§a 컨텐츠§7 을(를) §e" . date ("i분 s초", $record) . "§7 안에 클리어 하셨습니다. [컨텐츠 순위: §a" . $class->getPlayerRank ($name) . "위§7]");
 				}

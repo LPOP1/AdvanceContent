@@ -29,7 +29,7 @@ class Content
 		return $this->data;
 	}
 	
-	public function getClearCount (string $name, int $date = 1): int
+	public function getClearCount (string $name, string $date): int
 	{
 		if (!isset ($this->data ["player"] [$date])) {
 			$this->data ["player"] [$date] = [];
@@ -60,7 +60,7 @@ class Content
 		return $this->data ["end"];
 	}
 	
-	public function clearData (string $name, int $date = 1, int $time = 10000): void
+	public function clearData (string $name, string $date, int $time = 10000): void
 	{
 		if (!isset ($this->data ["player"] [$date] [$name])) {
 			$this->data ["player"] [$date] [$name] = 0;
